@@ -8,5 +8,19 @@
     "method-override": "^3.0.0",
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0"
-  }
+  },
+  "name": "online-trump-card-game",
+  "version": "1.0.0",
+  "description": "We can add more trump cards. Players can use those trump cards to play.",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Card",
+    "Game"
+  ],
+  "author": "Prabhat Kumar",
+  "license": "ISC"
 }
