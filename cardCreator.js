@@ -2,7 +2,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 .then(() => {
     console.log("DB Connection Successful!")
 })
@@ -13,6 +16,14 @@ mongoose.connect(process.env.MONGO_URI)
 const Card = require('./models/card');
 
 const addCards = async () => {
+    const card = await Card.create({
+        name: "Monkey D. Luffy",
+        cardSetName: "East Blue Saga",
+        attack: 9999,
+        defense: 9999,
+        hp: 9999
+    });
+    console.log(card);
 } 
 
 addCards();
