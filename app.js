@@ -9,6 +9,8 @@ const ejsMate = require('ejs-mate');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
+const Card = require("./models/card");
+
 //middleware (order matters )
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -29,6 +31,23 @@ mongoose.connect(process.env.MONGO_URI)
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.post('/card', async (req, res) => {
+    try {
+        console.log("Hitting the correct request")
+        const { name, cardSetName, attack, defense, hp } = req.body;
+        const card = await Card.create({
+            name, cardSetName, attack, defense, hp
+        });
+        console.log(card);
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.get('/cardAdd', (req, res) => {
+    res.render('cards/cardAdd.ejs');
+});
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
