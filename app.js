@@ -32,9 +32,13 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.patch('/card', async (req, res) => {
+app.patch('/card/:id', async (req, res) => {
     try {
-        const card = await Card.find({id: req.body._id});
+        const { id } = req.params;
+        const { name, cardSetName, attack, defense, hp } = req.body;
+        const card = await Card.findByIdAndUpdate(id,{
+            name, cardSetName, attack, defense, hp
+        });
         console.log(card);
         res.redirect('/card');
     }catch(err){
