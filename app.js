@@ -40,10 +40,12 @@ app.post('/card', async (req, res) => {
             name, cardSetName, attack, defense, hp
         });
         console.log(card);
+        res.redirect('/cardAdd');
     }catch(err){
-        console.log(err)
+        console.log(err);
+        res.redirect('/cardAdd');
     }
-})
+});
 
 app.get('/cardAdd', (req, res) => {
     res.render('cards/cardAdd.ejs');

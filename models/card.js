@@ -29,7 +29,6 @@ const cardSchema = new mongoose.Schema({
         type: Date
     }
 });
-cardSchema.index({title: 'text', description: 'text'});
 //create model
 const Card = new mongoose.model('Card', cardSchema);
 module.exports = Card;
