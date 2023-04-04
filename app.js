@@ -32,6 +32,17 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.patch('/card', async (req, res) => {
+    try {
+        const card = await Card.find({id: req.body._id});
+        console.log(card);
+        res.redirect('/card');
+    }catch(err){
+        console.log(err);
+        res.redirect('/card');
+    }
+})
+
 app.post('/card', async (req, res) => {
     try {
         console.log("Hitting the correct request")
