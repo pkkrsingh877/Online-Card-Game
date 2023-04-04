@@ -1,0 +1,25 @@
+<% layout('/layouts/boilerplate') %>
+
+<form method="POST" action="/card?_method=PATCH">
+  <div class="mb-3">
+    <label for="name" class="form-label"><%= card.name %></label>
+    <input type="text" class="form-control" id="name" name="name">
+  </div>
+  <div class="mb-3">
+    <label for="cardSetName" class="form-label"><%= card.cardSetName %></label>
+    <input type="text" class="form-control" id="cardSetName" name="cardSetName">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="attack"><%= card.attack %></label>
+    <input type="number" class="form-label" id="attack" name="attack">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="defense"><%= card.defense %></label>
+    <input type="number" class="form-label" id="defense" name="defense">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="hp"><%= card.hp %></label>
+    <input type="number" class="form-label" id="hp" name="hp">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
