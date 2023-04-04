@@ -32,6 +32,17 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.delete('/card/delete/:id', async (req, res) => {
+    try{
+        const { id } = req.params;
+        await Card.findByIdAndDelete(id);
+        res.redirect('/card');
+    }catch(err){
+        console.log(err);
+        res.redirect('/card');
+    }
+});
+
 app.patch('/card/edit/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -63,10 +74,10 @@ app.post('/card', async (req, res) => {
         const card = await Card.create({
             name, cardSetName, attack, defense, hp
         });
-        res.redirect('/cardAdd');
+        res.redirect('/card');
     }catch(err){
         console.log(err);
-        res.redirect('/cardAdd');
+        res.redirect('/card');
     }
 });
 

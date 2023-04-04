@@ -22,6 +22,9 @@
             </li>
         </ul>
         <div class="card-footer">
-            <a class="btn-primary" href="/card/edit/<%= card._id %>">Edit</a>
+            <a class="btn btn-primary" href="/card/edit/<%= card._id %>">Edit</a>
+            <form method="POST" action="/card/delete/<%= card._id %>?_method=DELETE">
+                <button class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </div>
