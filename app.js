@@ -40,12 +40,12 @@ app.patch('/card/:id', async (req, res) => {
             name, cardSetName, attack, defense, hp
         });
         console.log(card);
-        res.redirect('/card');
+        res.redirect("/card/id");
     }catch(err){
         console.log(err);
         res.redirect('/card');
     }
-})
+});
 
 app.post('/card', async (req, res) => {
     try {
@@ -59,6 +59,17 @@ app.post('/card', async (req, res) => {
     }catch(err){
         console.log(err);
         res.redirect('/cardAdd');
+    }
+});
+
+app.get('/card/edit/:id', async (req, res) => {
+    try{
+        const { id } = req.params;
+        const card = await Card.findById(id);
+        res.render('cards/cardEdit', { card });
+    }catch(err){
+        console.log(err);
+        res.redirect('/card');
     }
 });
 

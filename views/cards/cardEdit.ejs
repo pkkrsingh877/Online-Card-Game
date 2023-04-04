@@ -1,25 +1,25 @@
 <% layout('/layouts/boilerplate') %>
 
-<form method="POST" action="/card?_method=PATCH">
+<form method="POST" action="/card/<%= card._id %>?_method=PATCH">
   <div class="mb-3">
-    <label for="name" class="form-label"><%= card.name %></label>
-    <input type="text" class="form-control" id="name" name="name">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="<%= card.name %>">
   </div>
   <div class="mb-3">
-    <label for="cardSetName" class="form-label"><%= card.cardSetName %></label>
-    <input type="text" class="form-control" id="cardSetName" name="cardSetName">
+    <label for="cardSetName" class="form-label">Card Set Name</label>
+    <input type="text" class="form-control" id="cardSetName" name="cardSetName" value="<%= card.cardSetName %>">
   </div>
   <div class="mb-3">
-    <label class="form-label" for="attack"><%= card.attack %></label>
-    <input type="number" class="form-label" id="attack" name="attack">
+    <label class="form-label" for="attack">Attack</label>
+    <input type="number" class="form-label" id="attack" name="attack" value="<%= card.attack %>">
   </div>
   <div class="mb-3">
-    <label class="form-label" for="defense"><%= card.defense %></label>
-    <input type="number" class="form-label" id="defense" name="defense">
+    <label class="form-label" for="defense">Defense</label>
+    <input type="number" class="form-label" id="defense" name="defense" value="<%= card.defense %>">
   </div>
   <div class="mb-3">
-    <label class="form-label" for="hp"><%= card.hp %></label>
-    <input type="number" class="form-label" id="hp" name="hp">
+    <label class="form-label" for="hp">HP</label>
+    <input type="number" class="form-label" id="hp" name="hp" value="<%= card.hp %>">
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
