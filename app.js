@@ -32,33 +32,17 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.patch('/card/:id', async (req, res) => {
+app.patch('/card/edit/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { name, cardSetName, attack, defense, hp } = req.body;
         const card = await Card.findByIdAndUpdate(id,{
             name, cardSetName, attack, defense, hp
         });
-        console.log(card);
         res.redirect("/card/id");
     }catch(err){
         console.log(err);
         res.redirect('/card');
-    }
-});
-
-app.post('/card', async (req, res) => {
-    try {
-        console.log("Hitting the correct request")
-        const { name, cardSetName, attack, defense, hp } = req.body;
-        const card = await Card.create({
-            name, cardSetName, attack, defense, hp
-        });
-        console.log(card);
-        res.redirect('/cardAdd');
-    }catch(err){
-        console.log(err);
-        res.redirect('/cardAdd');
     }
 });
 
@@ -73,6 +57,23 @@ app.get('/card/edit/:id', async (req, res) => {
     }
 });
 
+app.post('/card', async (req, res) => {
+    try {
+        const { name, cardSetName, attack, defense, hp } = req.body;
+        const card = await Card.create({
+            name, cardSetName, attack, defense, hp
+        });
+        res.redirect('/cardAdd');
+    }catch(err){
+        console.log(err);
+        res.redirect('/cardAdd');
+    }
+});
+
+app.get('/card/add', (req, res) => {
+    res.render('cards/cardAdd.ejs');
+});
+
 app.get('/card/:id', async (req, res) => {
     try{
         const { id } = req.params;
@@ -82,15 +83,10 @@ app.get('/card/:id', async (req, res) => {
         console.log(err);
         res.redirect('/card');
     }
-})
-
-app.get('/cardAdd', (req, res) => {
-    res.render('cards/cardAdd.ejs');
 });
 
 app.get('/card', async (req, res) => {
     const cards = await Card.find({cardSetName: "East Blue Saga"});
-    console.log(cards);
     res.render('cards/cards', { cards });
 });
 
