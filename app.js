@@ -62,6 +62,17 @@ app.post('/card', async (req, res) => {
     }
 });
 
+app.get('/card/:id', async (req, res) => {
+    try{
+        const { id } = req.params;
+        const card = await Card.findById(id);
+        res.render('cards/cardView', { card });
+    }catch(err){
+        console.log(err);
+        res.redirect('/card');
+    }
+})
+
 app.get('/cardAdd', (req, res) => {
     res.render('cards/cardAdd.ejs');
 });
