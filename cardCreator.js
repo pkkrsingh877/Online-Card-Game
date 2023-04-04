@@ -15,15 +15,20 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const Card = require('./models/card');
 
-const addCards = async () => {
-    const card = await Card.create({
-        name: "Monkey D. Luffy",
+let name = ["Monkey D. Luffy","Roronova Zoro","Nami","Ussop","Sanji","Coby","Helmeppo","Morgan","Rika","Ririka","Shimotsuki Koushiro","Shimotsuki Kuina","Yassop","Kaya","Kuro","Zeff","Patty","Carne","Mayor Boodle","Chouchou","Bellmere","Nojiko","Genzo","Arlong","Hachi","Kurobi","Shou","Smoker","Tashigi","Shanks","Luckey Roux","Ben Beckman","Makino","Woop Slap","Higuna","Monkey D. Dragon","Lord of the Coast","Gaimon","Buggy","Mouji","Ricky","Alvida","Cabbaji","Ninjin","Piiman","Tamanegi","Gol D. Roger","Daddy Masterson","Carol Masterson","Johnny","Yosaku","Don Kreig","Pearl"]
+
+let addCards = async (i) => {
+    let card = await Card.create({
+        name: name[i],
         cardSetName: "East Blue Saga",
-        attack: 9999,
-        defense: 9999,
-        hp: 9999
+        attack: Math.floor(Math.random() * 9999),
+        defense: Math.floor(Math.random() * 9999),
+        hp: Math.floor(Math.random() * 9999)
     });
     console.log(card);
 } 
 
-addCards();
+for(let i = 0; i < name.length; i++){
+    addCards(i);
+}
+
