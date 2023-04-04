@@ -1,0 +1,15 @@
+<% layout('/layouts/boilerplate') %>
+
+<% for(let i = 0; i < cards.length; i++) { %>
+    <div class="card" style="width: 18rem; border: 1px black solid; background-color: black; color: white;">
+        <div class="card-body">
+          <h5 class="card-title"><%= cards[i].name %></h5>
+          <p class="card-text"><%= cards[i].cardSetName %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Attack:</b> <%= cards[i].attack %></li>
+          <li class="list-group-item"><b>Defense:</b> <%= cards[i].defense %></li>
+          <li class="list-group-item"><b>HP:</b> <%= cards[i].hp %></li>
+        </ul>
+      </div>
+<% } %>

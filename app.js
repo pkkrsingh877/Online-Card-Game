@@ -51,6 +51,12 @@ app.get('/cardAdd', (req, res) => {
     res.render('cards/cardAdd.ejs');
 });
 
+app.get('/card', async (req, res) => {
+    const cards = await Card.find({cardSetName: "East Blue Saga"});
+    console.log(cards);
+    res.render('cards/cards', { cards });
+});
+
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
